@@ -11,7 +11,7 @@ class MemberController extends Controller
     //member
     function index(){
         $data ['member'] = member::all();
-        return view('member', $data);
+        return view('member.member', $data);
     }
 
     function searchMember(Request $req){
@@ -20,7 +20,7 @@ class MemberController extends Controller
         );
 
         $data['member'] = member::where('nama', 'like', '%', $req->cari .'%')->orwhere('email', 'like', '%', $req->cari.'%')->get();
-        return view('member', $data);
+        return view('member.member', $data);
     }
 
     function addmember(){
@@ -32,7 +32,7 @@ class MemberController extends Controller
             'action' => url('/member/create'),
             'tombol' => "SIMPAN"
             ];
-        return view('addMember',$data);
+        return view('member.addMember',$data);
     }
 
     function createMember(Request $req){
@@ -65,7 +65,7 @@ class MemberController extends Controller
         'tombol' => "UPDATE"
         ];
 
-        return view('addMember',$data);
+        return view('member.addMember',$data);
     }
 
     function updateMember( Request $req){

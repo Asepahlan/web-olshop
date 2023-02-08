@@ -2,16 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\http\Controllers\MemberController;
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+use App\http\Controllers\ProdukController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -19,13 +10,18 @@ Route::get('/', function () {
 
 Route::controller(MemberController::class)->group(function (){
     route::get('/member', 'index');
-
     route::post('/member/search', 'searchMember')->name('nama');
     route::get('/member/add', 'addMember');
     route::post('/member/create', 'createMember');
     route::get('/member/delete/{id}', 'deleteMember');
-    // url edit
+    // routs edit
     route::get('/member/edit/{id}', 'editMember');
     route::post('/member/update/{id}', 'updateMember');
+});
     // produks
+    Route::controller(ProdukController::class)->group(function (){
+        Route::get('/produk','index');
+    route::post('/produk/search', 'searchProduk')->name('kd_produk');
+        Route::get('/produk/add','addproduk');
+        Route::post('/produk/add','createProduk');
 });
